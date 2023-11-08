@@ -4,9 +4,9 @@
 
 Học kỳ 1, Năm học 2023-2024
 
-**MSSV 1** : 
+**MSSV 1** : B2014913
 
-**Họ tên SV 1**:
+**Họ tên SV 1**: Châu Gia Hân
 
 **MSSV 2**:
 
@@ -14,5 +14,4 @@ Học kỳ 1, Năm học 2023-2024
 
 **Lớp học phần**:
 
-**Tên dự án**:
-
+**Tên dự án**: Coffee Shop

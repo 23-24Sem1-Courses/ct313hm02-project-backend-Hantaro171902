@@ -5,9 +5,9 @@ function createUser() {
     firstname: faker.person.firstName(),
     lastName: faker.person.lastName(),
     email: faker.internet.email(),
-    address: faker.location.streetAddress(),
+    address: faker.location.cityAddress(),
     phone: faker.phone.number("09########"),
-    favorite: faker.number.int({
+    role: faker.number.int({
       min: 0,
       max: 1,
     }),
