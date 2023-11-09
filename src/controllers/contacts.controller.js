@@ -17,9 +17,7 @@ async function createContact(req, res, next) {
     return res.send(contact);
   } catch (error) {
     console.log(error);
-    return next(
-      new ApiError(500, "An error occurred while creating the contact")
-    );
+    return next(new ApiError(500, "An error occurred while creating the user"));
   }
 }
 
