@@ -28,14 +28,14 @@ function makeUsersService() {
   }
 
   async function getManyUsers(query) {
-    const { name, favorite } = query;
-    return knex("users")
+    const { u_name, u_role } = query;
+    return knex("cf_user")
       .where((builder) => {
-        if (name) {
-          builder.where("name", "like", `%${name}%`);
+        if (u_name) {
+          builder.where("u_name", "like", `%${u_name}%`);
         }
-        if (favorite !== undefined) {
-          builder.where("favorite", 1);
+        if (u_role !== undefined) {
+          builder.where("u_role", u_role);
         }
       })
       .select("*");
