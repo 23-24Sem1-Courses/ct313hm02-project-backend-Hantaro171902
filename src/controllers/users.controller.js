@@ -1,9 +1,5 @@
-const makeContactsService = require("../services/users.service");
+const makeUsersService = require("../services/users.service");
 const ApiError = require("../api-error");
-
-// function createContact (req, res){
-//     return res.send({ message: 'createContact handler'} );
-// }
 
 // Create and Save a new User
 async function createUser(req, res, next) {
@@ -13,7 +9,7 @@ async function createUser(req, res, next) {
 
   try {
     const UsersService = makeUsersService();
-    const user = await ContactsService.createContact(req.body);
+    const user = await UsersService.createContact(req.body);
     return res.send(user);
   } catch (error) {
     console.log(error);
@@ -39,7 +35,7 @@ async function getUsersByFilter(req, res, next) {
 async function getUser(req, res, next) {
   try {
     const UsersService = makeUsersService();
-    const user = await contactsService.getUserById(req.params.id);
+    const user = await UsersService.getUserById(req.params.id);
     if (!user) {
       return next(new ApiError(404, "User not found"));
     }
@@ -103,10 +99,6 @@ async function deleteAllUsers(req, res, next) {
     );
   }
 }
-
-// function deleteAllContacts(req, res) {
-//     return res.send({ message: 'deleteAllContacts handler' });
-// }
 
 module.exports = {
   getUsersByFilter,

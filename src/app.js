@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const contactsRouter = require("./routes/contacts.router");
+const usersRouter = require("./routes/users.router");
 const {
   resourceNotFound,
   handlerError,
@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to coffee shop application." });
 });
 
-app.use("/api/contacts", contactsRouter);
+app.use("/api/users", usersRouter);
 
 // Handler 404 response
 app.use(resourceNotFound);
