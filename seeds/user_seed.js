@@ -11,7 +11,7 @@ function createUser() {
     first_name: faker.person.firstName(),
     last_name: faker.person.lastName(),
     u_address: faker.location.city(),
-    u_telephone: faker.phone.number(),
+    u_telephone: faker.phone.number("09########"),
     u_email: faker.internet.email(),
   };
 }
@@ -22,8 +22,18 @@ function createUser() {
  */
 
 exports.seed = async function (knex) {
+  // Disable foreign key constraints
+  await knex.raw("SET foreign_key_checks = 0");
+
+  // Delete rows from dependent tables first
+  await knex("cf_shopping_session").del();
+
   // Deletes ALL existing entries
-  // await knex("cf_user").del();
+  await knex("cf_user").del();
+
+  // Insert data
   await knex("cf_user").insert(Array(10).fill().map(createUser));
+
+  // Re-enable foreign key constraints
+  await knex.raw("SET foreign_key_checks = 1");
 };
-npm;
