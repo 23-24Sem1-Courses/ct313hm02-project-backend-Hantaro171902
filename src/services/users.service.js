@@ -1,11 +1,11 @@
-//const { createContact } = require('../controllers/users.controller');
+//const { createContact } = require('../controllers/cf_user.controller');
 const knex = require("../database/knex");
 
 function makeUsersService() {
   // define functions for accessing the database
   function readUser(payload) {
-    const users = {
-      u_name: payload.u_name, // Generate a user name
+    const cf_user = {
+      u_name: payload.u_name,
       u_role: payload.u_role,
       u_password: payload.u_password,
       first_name: payload.first_name,
@@ -15,16 +15,16 @@ function makeUsersService() {
       u_email: payload.u_email,
     };
     // Remove undefined fields
-    Object.keys(users).forEach(
-      (key) => users[key] === undefined && delete users[key]
+    Object.keys(cf_user).forEach(
+      (key) => cf_user[key] === undefined && delete cf_user[key]
     );
-    return users;
+    return cf_user;
   }
 
   async function createUser(payload) {
     const user = readUser(payload);
-    const [id] = await knex("users").insert(user);
-    return { id, ...user };
+    const [u_id] = await knex("cf_user").insert(user);
+    return { u_id, ...user };
   }
 
   async function getManyUsers(query) {
@@ -41,21 +41,21 @@ function makeUsersService() {
       .select("*");
   }
 
-  async function getUserById(id) {
-    return knex("users").where("id", id).select("*").first();
+  async function getUserById(u_id) {
+    return knex("cf_user").where("u_id", u_id).select("*").first();
   }
 
-  async function updateUser(id, payload) {
+  async function updateUser(u_id, payload) {
     const update = readUser(payload);
-    return knex("users").where("id", id).update(update);
+    return knex("cf_user").where("u_id", u_id).update(update);
   }
 
-  async function deleteUser(id) {
-    return knex("users").where("id", id).del();
+  async function deleteUser(u_id) {
+    return knex("cf_user").where("u_id", u_id).del();
   }
 
   async function deleteAllUsers() {
-    return knex("users").del();
+    return knex("cf_user").del();
   }
 
   return {
