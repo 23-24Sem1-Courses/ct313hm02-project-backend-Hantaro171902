@@ -2,17 +2,17 @@ const { faker } = require("@faker-js/faker");
 
 function createUser() {
   return {
-    name: faker.person.findName(),
-    role: faker.random.number({
+    u_name: faker.internet.userName(), // Generate a user name
+    u_role: faker.number.int({
       min: 0,
       max: 1,
     }),
-    password: faker.internet.password(),
-    firstname: faker.person.firstName(),
-    lastName: faker.person.lastName(),
-    address: faker.address.city(),
-    phone: faker.phone.phoneNumber("09########"),
-    email: faker.internet.email(),
+    u_password: faker.internet.password(),
+    first_name: faker.person.firstName(),
+    last_name: faker.person.lastName(),
+    u_address: faker.location.city(),
+    u_telephone: faker.phone.number(),
+    u_email: faker.internet.email(),
   };
 }
 
@@ -26,3 +26,4 @@ exports.seed = async function (knex) {
   // await knex("cf_user").del();
   await knex("cf_user").insert(Array(10).fill().map(createUser));
 };
+npm;
