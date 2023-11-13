@@ -58,6 +58,14 @@ function makeUsersService() {
     return knex("cf_user").del();
   }
 
+  // Using for Login page
+  async function getUserByCredentials(username, password) {
+    return knex("cf_user")
+      .where({ u_name: username, u_password: password })
+      .select("*")
+      .first();
+  }
+
   return {
     createUser,
     getManyUsers,
@@ -65,6 +73,7 @@ function makeUsersService() {
     updateUser,
     deleteUser,
     deleteAllUsers,
+    getUserByCredentials,
   };
 }
 
