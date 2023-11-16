@@ -36,7 +36,7 @@ app.use(handlerError);
 
 const usersService = makeUsersService();
 
-app.post("api/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
   const { u_name, u_password } = req.body;
 
   try {
