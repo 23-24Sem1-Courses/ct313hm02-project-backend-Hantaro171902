@@ -4,6 +4,9 @@ const { methodNotAllowed } = require("../controllers/errors.controller");
 
 const router = express.Router();
 
+// Login route
+router.post("/login", usersController.login);
+
 router
   .route("/")
   .get(usersController.getUsersByFilter)

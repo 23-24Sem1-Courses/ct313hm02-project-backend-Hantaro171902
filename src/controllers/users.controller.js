@@ -9,7 +9,7 @@ async function createUser(req, res, next) {
 
   try {
     const UsersService = makeUsersService();
-    const user = await UsersService.createContact(req.body);
+    const user = await UsersService.createUser(req.body);
     return res.send(user);
   } catch (error) {
     console.log(error);
@@ -17,19 +17,19 @@ async function createUser(req, res, next) {
   }
 }
 
-// Retrieve contacts of a user from the database
+// Retrieve users of a user from the database
 async function getUsersByFilter(req, res, next) {
-  let contacts = [];
+  let users = [];
 
   try {
     const UsersService = makeUsersService();
-    contacts = await UsersService.getManyUsers(req.query);
+    users = await UsersService.getManyUsers(req.query);
   } catch (error) {
     console.log(error);
     return next(new ApiError(500, "An error occurred while retrieving users"));
   }
 
-  return res.send(contacts);
+  return res.send(users);
 }
 
 async function getUser(req, res, next) {
@@ -84,7 +84,7 @@ async function deleteUser(req, res, next) {
   }
 }
 
-// Delete all contacts of a user from the database
+// Delete all users of a user from the database
 async function deleteAllUsers(req, res, next) {
   try {
     const usersService = makeUsersService();
@@ -100,6 +100,27 @@ async function deleteAllUsers(req, res, next) {
   }
 }
 
+// Login
+async function login(req, res, next) {
+  const { u_name, u_password } = req.body;
+
+  try {
+    const UsersService = makeUsersService();
+    const user = await UsersService.getUserByCredentials(u_name, u_password);
+
+    if (user) {
+      // Successful login
+      res.status(200).json({ message: "Login successful", user });
+    } else {
+      // Failed login
+      res.status(401).json({ message: "Invalid credentials" });
+    }
+  } catch (error) {
+    console.error("Error during login:", error);
+    next(error); // Pass the error to the next middleware or error handler
+  }
+}
+
 module.exports = {
   getUsersByFilter,
   deleteAllUsers,
@@ -107,4 +128,5 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  login,
 };
