@@ -6,8 +6,8 @@ function makeUsersService() {
   function readUser(payload) {
     const cf_user = {
       u_name: payload.u_name,
-      u_role: payload.u_role,
       u_password: payload.u_password,
+      u_role: payload.u_role,
       first_name: payload.first_name,
       last_name: payload.last_name,
       u_address: payload.u_address,

@@ -3,7 +3,7 @@ const ApiError = require("../api-error");
 
 // Create and Save a new User
 async function createUser(req, res, next) {
-  if (!req.body?.name) {
+  if (!req.body?.u_name) {
     return next(new ApiError(404, "Name can not be empty"));
   }
 
