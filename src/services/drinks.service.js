@@ -67,7 +67,7 @@ function makeDrinksService() {
         });
         return {
             metadata: paginator.getMetadata(totalRecords),
-            book: results,
+            drink: results,
         };
     }
 
