@@ -20,8 +20,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", usersRouter);
-app.use("/api/cf_drinks", drinksRouter);
-app.use("/api/cf_categories", categoriesRouter);
+app.use("/api/drinks", drinksRouter);
+app.use("/api/categories", categoriesRouter);
 // Handler 404 response
 app.use(resourceNotFound);
 

@@ -5,14 +5,13 @@ function makeUsersService() {
   // define functions for accessing the database
   function readUser(payload) {
     const cf_user = {
-      u_name: payload.u_name,
-      u_password: payload.u_password,
-      u_role: payload.u_role,
-      first_name: payload.first_name,
-      last_name: payload.last_name,
-      u_address: payload.u_address,
-      u_telephone: payload.u_telephone,
-      u_email: payload.u_email,
+      u_name: payload.username,
+      u_password: payload.password,
+      first_name: payload.firstname,
+      last_name: payload.lastname,
+      u_address: payload.address,
+      u_telephone: payload.telephone,
+      u_email: payload.email,
     };
     // Remove undefined fields
     Object.keys(cf_user).forEach(
