@@ -68,13 +68,13 @@ async function getDrink(req, res, next) {
     const drinksService = makeDrinksService();
     const drinks = await drinksService.getDrinkById(req.params.id);
     if (!drinks) {
-      return next(new ApiError(404, "Contact not found"));
+      return next(new ApiError(404, "Drink not found"));
     }
     return res.send(drinks);
   } catch (error) {
     console.log(error);
     return next(
-      new ApiError(500, `Error retrieving contact with id=${req.params.id}`)
+      new ApiError(500, `Error retrieving Drink with id=${req.params.id}`)
     );
   }
 }
@@ -87,13 +87,13 @@ async function updateDrink(req, res, next) {
     const drinksService = makeDrinksService();
     const updated = await drinksService.updateDrink(req.params.id, req.body);
     if (!updated) {
-      return next(new ApiError(404, "Contact not found"));
+      return next(new ApiError(404, "Drink not found"));
     }
-    return res.send({ message: "Contact was updated successfully" });
+    return res.send({ message: "Drink was updated successfully" });
   } catch (error) {
     console.log(error);
     return next(
-      new ApiError(500, " Error updating contact with id= ${req.params.id}")
+      new ApiError(500, " Error updating Drink with id= ${req.params.id}")
     );
   }
 }
@@ -105,11 +105,11 @@ async function deleteDrink(req, res, next) {
     if (!deleted) {
       return next(new ApiError(404, "Drink not found"));
     }
-    return res.send({ message: "Contact was deleted successfully" });
+    return res.send({ message: "Drink was deleted successfully" });
   } catch (error) {
     console.log(error);
     return next(
-      new ApiError(500, `Error retrieving contact with id=${req.params.id}`)
+      new ApiError(500, `Error retrieving Drink with id=${req.params.id}`)
     );
   }
 }
@@ -119,13 +119,13 @@ async function deleteCategories(req, res, next) {
     const typesService = makeDrinksService();
     const deleted = await typesService.deletetype(req.params.id);
     if (!deleted) {
-      return next(new ApiError(404, "Contact not found"));
+      return next(new ApiError(404, "Drink not found"));
     }
-    return res.send({ message: "Contact was deleted successfully" });
+    return res.send({ message: "Drink was deleted successfully" });
   } catch (error) {
     console.log(error);
     return next(
-      new ApiError(500, `Could not delete contact with id=${req.params.id}`)
+      new ApiError(500, `Could not delete Drink with id=${req.params.id}`)
     );
   }
 }
